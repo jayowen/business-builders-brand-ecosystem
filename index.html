@@ -1296,6 +1296,264 @@
         }
 
         /* ============================================
+           OVERVIEW VIEW
+           ============================================ */
+
+        .overview-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .overview-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .overview-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--orange), var(--coral), var(--deep-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .overview-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .overview-funnel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .funnel-tier {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .funnel-tier:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .funnel-tier.tier-free {
+            border-left: 4px solid var(--coral);
+        }
+
+        .funnel-tier.tier-paid {
+            border-left: 4px solid var(--deep-coral);
+            width: 90%;
+        }
+
+        .funnel-tier.tier-premium {
+            border-left: 4px solid var(--orange);
+            width: 80%;
+        }
+
+        .tier-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .tier-content {
+            flex: 1;
+        }
+
+        .tier-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .tier-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .tier-free .tier-name { color: var(--coral); }
+        .tier-paid .tier-name { color: var(--deep-coral); }
+        .tier-premium .tier-name { color: var(--orange); }
+
+        .tier-brands {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-goal {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .tier-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            max-width: 140px;
+        }
+
+        .metric {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--bg-elevated);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .funnel-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-muted);
+        }
+
+        .arrow-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .overview-cta {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .cta-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .cta-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--coral);
+            background: linear-gradient(135deg, var(--coral), var(--deep-coral));
+            color: white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px var(--coral-glow);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--coral);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(232, 99, 124, 0.1);
+        }
+
+        .overview-sidebar {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            max-width: 250px;
+        }
+
+        .sidebar-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .note-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .note-content strong {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 700px) {
+            .overview-container {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .funnel-tier {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .funnel-tier.tier-paid,
+            .funnel-tier.tier-premium {
+                width: 100%;
+            }
+
+            .tier-metrics {
+                justify-content: center;
+                max-width: 100%;
+            }
+
+            .overview-sidebar {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 2rem;
+                max-width: 100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* ============================================
            TEAM USABILITY FEATURES
            ============================================ */
 
@@ -1416,7 +1674,8 @@
 <body>
     <!-- View Tabs -->
     <div class="view-tabs">
-        <button class="view-tab active" data-view="streamlined">Streamlined Funnel</button>
+        <button class="view-tab active" data-view="overview">Overview</button>
+        <button class="view-tab" data-view="streamlined">Streamlined Funnel</button>
         <button class="view-tab" data-view="detailed">Detailed Ecosystem</button>
     </div>
 
@@ -1467,8 +1726,101 @@
 
     <div class="bg-gradient"></div>
 
+    <!-- OVERVIEW VIEW -->
+    <div id="overview-view" class="view-content active">
+        <div class="overview-container">
+            <div class="overview-header">
+                <h1 class="overview-title">The Brand Ecosystem</h1>
+                <p class="overview-subtitle">One funnel. Three tiers. Infinite impact.</p>
+            </div>
+
+            <div class="overview-funnel">
+                <!-- Top of Funnel -->
+                <div class="funnel-tier tier-free">
+                    <div class="tier-icon">🌐</div>
+                    <div class="tier-content">
+                        <div class="tier-label">FREE CONTENT</div>
+                        <h2 class="tier-name">Jay Owen</h2>
+                        <div class="tier-brands">AI with Jay • Jay Owen Live • Building a Business that Lasts • Speaking</div>
+                        <div class="tier-goal">Attract & Educate</div>
+                    </div>
+                    <div class="tier-metrics">
+                        <span class="metric">Newsletter</span>
+                        <span class="metric">YouTube</span>
+                        <span class="metric">LinkedIn</span>
+                        <span class="metric">Podcast</span>
+                    </div>
+                </div>
+
+                <div class="funnel-arrow">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 8 L20 32 M12 24 L20 32 L28 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="arrow-label">Nurture & Convert</span>
+                </div>
+
+                <!-- Middle of Funnel -->
+                <div class="funnel-tier tier-paid">
+                    <div class="tier-icon">🚀</div>
+                    <div class="tier-content">
+                        <div class="tier-label">PAID COMMUNITY</div>
+                        <h2 class="tier-name">Future-Focused Leaders</h2>
+                        <div class="tier-brands">$29-99/month</div>
+                        <div class="tier-goal">Engage & Develop</div>
+                    </div>
+                    <div class="tier-metrics">
+                        <span class="metric">Monthly Training</span>
+                        <span class="metric">Resources</span>
+                        <span class="metric">Community</span>
+                        <span class="metric">Summit</span>
+                    </div>
+                </div>
+
+                <div class="funnel-arrow">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 8 L20 32 M12 24 L20 32 L28 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="arrow-label">Qualify & Serve</span>
+                </div>
+
+                <!-- Bottom of Funnel -->
+                <div class="funnel-tier tier-premium">
+                    <div class="tier-icon">⚡</div>
+                    <div class="tier-content">
+                        <div class="tier-label">PREMIUM SERVICES</div>
+                        <h2 class="tier-name">Business Builders & Ministry Builders</h2>
+                        <div class="tier-brands">$5K-50K+</div>
+                        <div class="tier-goal">Transform & Scale</div>
+                    </div>
+                    <div class="tier-metrics">
+                        <span class="metric">Strategy</span>
+                        <span class="metric">Done-for-You</span>
+                        <span class="metric">Consulting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-cta">
+                <p class="cta-text">Explore the details</p>
+                <div class="cta-buttons">
+                    <button class="cta-btn" onclick="document.querySelector('[data-view=streamlined]').click()">Streamlined View</button>
+                    <button class="cta-btn secondary" onclick="document.querySelector('[data-view=detailed]').click()">Full Details</button>
+                </div>
+            </div>
+
+            <div class="overview-sidebar">
+                <div class="sidebar-note">
+                    <div class="note-icon">🏗️</div>
+                    <div class="note-content">
+                        <strong>Agency Builders</strong> is a standalone community for agency owners — peers, not clients.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- STREAMLINED FUNNEL VIEW -->
-    <div id="streamlined-view" class="view-content active">
+    <div id="streamlined-view" class="view-content">
         <header class="streamlined-hero">
             <h1>Build Community.<br><em>Scale Revenue.</em></h1>
             <p>A clear path from free content to high-value consulting services through community at every stage.</p>
